@@ -16,4 +16,13 @@ public class treadmillmovement : MonoBehaviour {
 	void Update () {
         transform.position = new Vector3(transform.position.x - speed*Time.deltaTime, transform.position.y, transform.position.z);       	
 	}
+
+    void onTriggerEnter(Collision c)
+    {
+        Debug.Log(name + " triggered");
+    }
+    void OnCollisionEnter(Collision c)
+    {
+        Debug.Log(name + " collided");
+    }
 }
