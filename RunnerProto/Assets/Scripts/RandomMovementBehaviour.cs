@@ -9,6 +9,8 @@ public class RandomMovementBehaviour : MonoBehaviour {
     float switchDir = 0.2f;
     float curTime = 0;
 
+    public float minValue, maxValue; //maxValue muss die Breite der Platform sein, eine getter Methode wäre gut
+
 	// Use this for initialization
 	void Start () {
         SetVel();

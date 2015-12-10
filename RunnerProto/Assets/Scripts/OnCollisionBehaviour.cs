@@ -3,7 +3,8 @@ using System.Collections;
 
 public class OnCollisionBehaviour : MonoBehaviour {
 
-    public GameObject particles;
+    public ParticleSystem poof;
+    public Animation walk;
     // Use this for initialization
     void Start () {
 	}
@@ -17,6 +18,12 @@ public class OnCollisionBehaviour : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("#Collision");
+            poof.Play();
+        }
+
+        if(poof.IsAlive())
+        {
+            poof.Stop();
         }
     }
 }
