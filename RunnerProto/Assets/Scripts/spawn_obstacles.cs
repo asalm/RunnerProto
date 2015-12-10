@@ -5,13 +5,15 @@ using System.Collections.Generic;
 public class spawn_obstacles : MonoBehaviour {
 
 
-    public GameObject playerObject, platform;
+    public GameObject playerObject;
+    public GameObject platform;
     List<GameObject> treadmill = new List<GameObject>();
     int counter = 0;
     int length = 8, maxDistance = 5;
     //maxDistance ist die maximale Distanz die zurückgelegt werden darf, bis eine neue Platform erstellt wird
     float currentXPosPlayer, distance, xPosPlatform;
-    float absoluteX;
+    static float absoluteX;
+    float speedBorder = 20.0f, deltaSpeed = 0.5f;
 	// Use this for initialization
 	void Start () {
 
@@ -26,6 +28,11 @@ public class spawn_obstacles : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(getTotalDistance() >= speedBorder) //die Geschwindigkeit ist abhängig von der zurückgelegten Strecke, sie wird erhöht je länger der Spieler läuft
+        {
+            treadmillmovement.setSpeed(deltaSpeed);
+            speedBorder += speedBorder;
+        }
         distance = getDistance(); //zurückgelegte Strecke vom Player
         if (distance < 0)
             distance *= -1;
@@ -54,9 +61,19 @@ public class spawn_obstacles : MonoBehaviour {
     }
 
 
+    public float getTotalDistance()
+    {
+        if(absoluteX > playerObject.transform.position.x)
+            return absoluteX - playerObject.transform.position.x;
+        else
+            return playerObject.transform.position.x  - absoluteX;
+    }
+
+
 
     IEnumerator DeleteIntances()
     {
+        yield return new WaitForSeconds(5);
         while (true)
         {
             yield return new WaitForSeconds(3);

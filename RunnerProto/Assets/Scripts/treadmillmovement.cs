@@ -4,7 +4,7 @@ using System.Collections;
 public class treadmillmovement : MonoBehaviour {
 
 
-    public float speed = 3.0f;
+    public static float speed = 3.0f;
     public bool backwards = true;
     public bool x = true;
 	// Use this for initialization
@@ -24,5 +24,11 @@ public class treadmillmovement : MonoBehaviour {
     void OnCollisionEnter(Collision c)
     {
         Debug.Log(name + " collided");
+    }
+
+    public static void setSpeed(float s)
+    {
+        speed  += s;
+        Debug.Log("speed wurde erhöht!");
     }
 }

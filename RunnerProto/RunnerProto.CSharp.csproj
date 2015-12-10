@@ -68,9 +68,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\distance_measuring.cs" />
-    <Compile Include="Assets\spawn_obstacles.cs" />
-    <Compile Include="Assets\treadmillmovement.cs" />
+    <Compile Include="Assets\Scripts\OnCollisionBehaviour.cs" />
+    <Compile Include="Assets\Scripts\OutOfBoundsReaction.cs" />
+    <Compile Include="Assets\Scripts\PlayerControls.cs" />
+    <Compile Include="Assets\Scripts\PrefabDropper.cs" />
+    <Compile Include="Assets\Scripts\RandomMovementBehaviour.cs" />
+    <Compile Include="Assets\Scripts\spawn_obstacles.cs" />
+    <Compile Include="Assets\Scripts\treadmillmovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

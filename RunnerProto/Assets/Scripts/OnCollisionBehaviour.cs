@@ -3,6 +3,7 @@ using System.Collections;
 
 public class OnCollisionBehaviour : MonoBehaviour {
 
+    public GameObject particles;
     // Use this for initialization
     void Start () {
 	}
@@ -16,7 +17,6 @@ public class OnCollisionBehaviour : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("#Collision");
-            //Destroy(this.gameObject);
         }
     }
 }

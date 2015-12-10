@@ -22,8 +22,6 @@ public class PrefabDropper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
         objX = this.gameObject.transform.position.x;
         objY = this.gameObject.transform.position.y;
         objZ = this.gameObject.transform.position.z;
@@ -33,7 +31,7 @@ public class PrefabDropper : MonoBehaviour {
     void spawn()
     {
         Vector3 pos = new Vector3(objX-2.5F, objY, objZ); // Spawn Coordinates
-        Quaternion rota = new Quaternion(0, 0, 0, 0);
+        Quaternion rota = (Quaternion)Random.rotation; // dreht jedes gespawnte Objekt beliebig
         Instantiate(prefab, pos, rota);
     }
 
