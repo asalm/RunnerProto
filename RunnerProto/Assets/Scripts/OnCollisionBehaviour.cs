@@ -17,7 +17,7 @@ public class OnCollisionBehaviour : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            Debug.Log("#Collision");
+            //Debug.Log("#Collision");
             poof.Play();
         }
 

@@ -68,12 +68,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Cup_Deletion.cs" />
     <Compile Include="Assets\Scripts\OnCollisionBehaviour.cs" />
     <Compile Include="Assets\Scripts\OutOfBoundsReaction.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\PrefabDropper.cs" />
     <Compile Include="Assets\Scripts\RandomMovementBehaviour.cs" />
     <Compile Include="Assets\Scripts\SineMovement.cs" />
+    <Compile Include="Assets\Scripts\Spawning.cs" />
     <Compile Include="Assets\Scripts\spawn_obstacles.cs" />
     <Compile Include="Assets\Scripts\treadmillmovement.cs" />
   </ItemGroup>

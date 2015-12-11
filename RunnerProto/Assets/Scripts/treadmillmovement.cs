@@ -31,4 +31,9 @@ public class treadmillmovement : MonoBehaviour {
         speed  += s;
         Debug.Log("speed wurde erhöht!");
     }
+
+    public static float getSpeed()
+    {
+        return speed;
+    }
 }

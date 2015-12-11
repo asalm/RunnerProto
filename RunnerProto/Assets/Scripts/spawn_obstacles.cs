@@ -4,25 +4,22 @@ using System.Collections.Generic;
 
 public class spawn_obstacles : MonoBehaviour {
 
-
     public GameObject playerObject;
     public GameObject platform;
-    List<GameObject> treadmill = new List<GameObject>();
-    int counter = 0;
-    int length = 8, maxDistance = 5;
+    public float freq = 2.0f;
+    Queue<GameObject> treadmill = new Queue<GameObject>(); //Das Verhalten des Laufband ist einer Queue ähnlich:
+    //Hinten werden Objekte rangehängt und die ersten Objekte werden gelöscht ----> FIFO
+    int length = 16, maxDistance = 7;
     //maxDistance ist die maximale Distanz die zurückgelegt werden darf, bis eine neue Platform erstellt wird
     float currentXPosPlayer, distance, xPosPlatform;
     static float absoluteX;
-    float speedBorder = 20.0f, deltaSpeed = 0.5f;
+    static float speedBorder = 20.0f, deltaSpeed = 0.5f;
 	// Use this for initialization
 	void Start () {
-
-        StartCoroutine(DeleteIntances());
+        InvokeRepeating("deleteInstances", 10, 5); //nearly the same as startCoroutine;
         currentXPosPlayer = playerObject.transform.position.x;
         absoluteX = currentXPosPlayer;
         xPosPlatform = platform.transform.position.x - length;
-
-        treadmill.Add(platform);
     }
 	
 	// Update is called once per frame
@@ -39,17 +36,18 @@ public class spawn_obstacles : MonoBehaviour {
         if (distance >= maxDistance)
         {
             currentXPosPlayer = playerObject.transform.position.x;
-
-            GameObject platformInstance = (GameObject)Instantiate(platform); // Instanz des Laufbands wird erstellt
-            treadmill.Add(platformInstance); //neue Instanz wird in die Liste hinzugefügt
+            GameObject platformInstance = new GameObject();
+            platformInstance = (GameObject)Instantiate(platform); // Instanz des Laufbands wird erstellt
+            
 
             platformInstance.transform.position = new Vector3(xPosPlatform, platform.transform.position.y, platform.transform.position.z);
             //oben: die erstellte Instanz wird hier neu positioniert
 
             xPosPlatform -= length; //neue Position um die instantiierte Platform zu positionieren
+          
+            treadmill.Enqueue(platformInstance); //neue Instanz wird in die Liste hinzugefügt
             Debug.Log(treadmill.Count);
         }
-
 	}
 
     public float getDistance() // errechnet die aktuelle zurückgelegt Distanz eines Gameobjects, was vom Nutzer festgelegt wird
@@ -69,17 +67,14 @@ public class spawn_obstacles : MonoBehaviour {
             return playerObject.transform.position.x  - absoluteX;
     }
 
-
-
-    IEnumerator DeleteIntances()
+    void deleteInstances()
     {
-        yield return new WaitForSeconds(5);
-        while (true)
-        {
-            yield return new WaitForSeconds(3);
-            Destroy(treadmill[counter + 1]);
-            Debug.Log("Destroyed");
-            counter++;
-        }
+        Debug.Log("destroyed");
+        Destroy(treadmill.Dequeue());
+    }
+
+    public static float getSpeedBorder()
+    {
+        return speedBorder;
     }
 }
